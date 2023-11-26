@@ -1,8 +1,13 @@
 import flet as ft
+from datetime import datetime
+import io
+import base64
+import matplotlib.pyplot as plt
 
-def get_tracking_page():
-    page = ft.Column([
-        ft.Text("Page de Suivi du Poids")
+
+def get_tracking_view(page):
+    pesees = []
+
     def add_poids(e):
         try:
             poids = float(poids_input.value)
@@ -65,20 +70,14 @@ def get_tracking_page():
             liste_pesees.controls.append(ft.Text(f"{date}: {poids} kg"))
         liste_pesees.update()
 
-   
     # Ajout du bouton à la page
-    page.add(navigate_button)
+   # page.add(navigate_button)
 
-   # Champ de saisie pour le poids
     poids_input = ft.TextField(label="Entrez votre poids (kg)", width=300)
-
-    # Bouton pour ajouter le poids
     add_button = ft.ElevatedButton("Ajouter le poids", on_click=add_poids)
-
-    # Liste pour afficher les pesees
     liste_pesees = ft.Column()
 
-    # Ajout des widgets a la page
-    page.add(poids_input, add_button, liste_pesees)
-    ])
-    return page
+    return ft.View(
+        "/",
+        [ft.AppBar(title=ft.Text("Tracking Page")), ...]  # Autres widgets
+    )
